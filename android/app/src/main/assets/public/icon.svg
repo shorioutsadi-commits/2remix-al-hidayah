@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="128" fill="#f58c01"/>
+  <!-- Audio Soundwave Equalizer Logo with 7 rounded vertical pill bars -->
+  <g fill="#ffffff">
+    <!-- Bar 1 -->
+    <rect x="70" y="195" width="38" height="122" rx="19"/>
+    <!-- Bar 2 -->
+    <rect x="128" y="160" width="38" height="192" rx="19"/>
+    <!-- Bar 3 -->
+    <rect x="186" y="115" width="38" height="282" rx="19"/>
+    <!-- Bar 4 (Center - Tallest) -->
+    <rect x="244" y="46" width="38" height="420" rx="19"/>
+    <!-- Bar 5 -->
+    <rect x="302" y="115" width="38" height="282" rx="19"/>
+    <!-- Bar 6 -->
+    <rect x="360" y="160" width="38" height="192" rx="19"/>
+    <!-- Bar 7 -->
+    <rect x="418" y="195" width="38" height="122" rx="19"/>
+  </g>
+</svg>
