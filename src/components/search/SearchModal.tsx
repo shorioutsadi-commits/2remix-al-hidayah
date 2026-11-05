@@ -55,14 +55,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
       });
 
   return (
-    <div className="fixed inset-0 z-50 bg-white flex flex-col animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 flex flex-col animate-in fade-in duration-200">
       
       {/* Search Header Bar */}
-      <div className="bg-white border-b border-stone-200 px-4 py-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] sticky top-0 z-10 shadow-xs">
+      <div className="bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 px-4 py-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] sticky top-0 z-10 shadow-xs">
         <div className="max-w-md mx-auto flex items-center gap-2">
           <button
             onClick={onClose}
-            className="p-2 -ml-1 rounded-xl text-stone-500 hover:text-stone-800 hover:bg-stone-100 transition-colors cursor-pointer"
+            className="p-2 -ml-1 rounded-xl text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
             aria-label="ফিরে যান"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -76,12 +76,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
               placeholder="বয়ান, বক্তা বা সূরা অনুসন্ধান করুন..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full bg-stone-50 border border-stone-200 rounded-xl pl-9 pr-9 py-2.5 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-[#f58c01] focus:ring-1 focus:ring-[#f58c01]"
+              className="w-full bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl pl-9 pr-9 py-2.5 text-xs text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#f58c01] focus:ring-1 focus:ring-[#f58c01]"
             />
             {query && (
               <button
                 onClick={() => setQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-stone-400 hover:text-stone-600 cursor-pointer"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 cursor-pointer"
                 aria-label="মুছে ফেলুন"
               >
                 <X className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
         {query.trim() === '' ? (
           <div className="space-y-4">
             <div>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-stone-700 mb-2.5">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-stone-700 dark:text-stone-200 mb-2.5">
                 <Sparkles className="w-4 h-4 text-[#f58c01]" />
                 <span>জনপ্রিয় অনুসন্ধান শব্দসমূহ</span>
               </div>
@@ -106,18 +106,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                   <button
                     key={kw}
                     onClick={() => setQuery(kw)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-stone-200 rounded-full text-xs font-medium text-stone-700 hover:border-[#f58c01] hover:text-[#f58c01] shadow-2xs transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full text-xs font-medium text-stone-700 dark:text-stone-300 hover:border-[#f58c01] dark:hover:border-[#f58c01] hover:text-[#f58c01] dark:hover:text-[#f58c01] shadow-2xs transition-colors cursor-pointer"
                   >
-                    <Tag className="w-3 h-3 text-stone-400" />
+                    <Tag className="w-3 h-3 text-stone-400 dark:text-stone-500" />
                     <span>{kw}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="bg-orange-50/70 border border-orange-200/60 rounded-2xl p-4 text-xs text-stone-700 space-y-1.5">
-              <span className="font-bold text-orange-800 block">💡 খোঁজার টিপস:</span>
-              <p className="text-stone-600 leading-relaxed">
+            <div className="bg-orange-50/70 dark:bg-orange-950/20 border border-orange-200/60 dark:border-orange-900/40 rounded-2xl p-4 text-xs text-stone-700 dark:text-stone-300 space-y-1.5">
+              <span className="font-bold text-orange-800 dark:text-orange-300 block">💡 খোঁজার টিপস:</span>
+              <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
                 বক্তার নাম (যেমন: আবু বকর জাকারিয়া, মতিউর রহমান মাদানি), সূরার নাম (যেমন: আর-রহমান, আল-মুলক) কিংবা যেকোনো বিষয়ের নাম লিখে দ্রুত অডিও খুঁজে পেতে পারেন।
               </p>
             </div>
@@ -125,16 +125,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
         ) : (
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-stone-700">
+              <span className="text-xs font-bold text-stone-700 dark:text-stone-200">
                 অনুসন্ধানের ফলাফল
               </span>
-              <span className="text-xs font-medium text-orange-600">
+              <span className="text-xs font-medium text-[#f58c01]">
                 {toBengaliNumber(results.length)} টি অডিও পাওয়া গেছে
               </span>
             </div>
 
             {results.length === 0 ? (
-              <div className="bg-white rounded-2xl p-8 text-center text-stone-500 text-xs border border-stone-200">
+              <div className="bg-white dark:bg-stone-900 rounded-2xl p-8 text-center text-stone-500 dark:text-stone-400 text-xs border border-stone-200 dark:border-stone-800">
                 &quot;{query}&quot; দিয়ে কোনো অডিও পাওয়া যায়নি। দয়া করে ভিন্ন শব্দ বা বানান পরীক্ষা করে পুনরায় চেষ্টা করুন।
               </div>
             ) : (

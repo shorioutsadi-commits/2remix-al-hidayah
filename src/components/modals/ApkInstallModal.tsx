@@ -93,28 +93,28 @@ export const ApkInstallModal: React.FC<ApkInstallModalProps> = ({ isOpen, onClos
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-stone-900/60 backdrop-blur-xs transition-opacity" 
+        className="fixed inset-0 bg-stone-900/60 dark:bg-black/80 backdrop-blur-xs transition-opacity" 
         onClick={onClose} 
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl p-5 z-10 max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-sm bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 rounded-3xl shadow-2xl p-5 z-10 max-h-[90vh] overflow-y-auto border border-stone-100 dark:border-stone-800 animate-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-stone-100">
+        <div className="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-orange-50 text-[#f58c01] border border-orange-100 rounded-xl">
+            <div className="p-2 bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] border border-orange-100 dark:border-orange-900/50 rounded-xl">
               <Smartphone className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-stone-900">অ্যান্ড্রয়েড অ্যাপ ও APK</h3>
-              <p className="text-[11px] text-stone-500">আপনার মোবাইলে সরাসরি ইনস্টল করুন</p>
+              <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">অ্যান্ড্রয়েড অ্যাপ ও APK</h3>
+              <p className="text-[11px] text-stone-500 dark:text-stone-400">আপনার মোবাইলে সরাসরি ইনস্টল করুন</p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
+            className="p-1.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -124,15 +124,15 @@ export const ApkInstallModal: React.FC<ApkInstallModalProps> = ({ isOpen, onClos
         <div className="py-4 space-y-4">
           
           {/* App Preview Badge */}
-          <div className="bg-white border border-stone-200/90 rounded-2xl p-4 text-stone-900 text-center flex flex-col items-center shadow-xs">
+          <div className="bg-white dark:bg-stone-850 border border-stone-200/90 dark:border-stone-700/80 rounded-2xl p-4 text-stone-900 dark:text-stone-100 text-center flex flex-col items-center shadow-xs">
             <div className="mb-2">
               <Logo size="lg" variant="orange" />
             </div>
-            <h4 className="text-base font-bold text-stone-900">আল হিদায়াহ অডিও</h4>
+            <h4 className="text-base font-bold text-stone-900 dark:text-stone-100">আল হিদায়াহ অডিও</h4>
             <span className="text-xs text-[#f58c01] font-semibold">সংস্করণ {toBengaliNumber('1.4.0')} • Android WebAPK</span>
 
-            <div className="mt-3 flex items-center gap-1.5 text-[11px] bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-3 py-1 rounded-full font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="mt-3 flex items-center gap-1.5 text-[11px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 px-3 py-1 rounded-full font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
               <span>সম্পূর্ণ নিরাপদ ও বিজ্ঞাপনমুক্ত</span>
             </div>
           </div>
@@ -149,28 +149,28 @@ export const ApkInstallModal: React.FC<ApkInstallModalProps> = ({ isOpen, onClos
           </div>
 
           {/* Step by step manual guide */}
-          <div className="bg-stone-50 border border-stone-200 rounded-2xl p-3.5 space-y-2.5 text-xs">
-            <span className="font-bold text-stone-800 block">
+          <div className="bg-stone-50 dark:bg-stone-850 border border-stone-200 dark:border-stone-700/80 rounded-2xl p-3.5 space-y-2.5 text-xs">
+            <span className="font-bold text-stone-800 dark:text-stone-200 block">
               📲 মোবাইলে সরাসরি ইনস্টল করার সহজ নিয়ম:
             </span>
 
-            <div className="space-y-2 text-stone-600 leading-snug">
+            <div className="space-y-2 text-stone-600 dark:text-stone-300 leading-snug">
               <div className="flex items-start gap-2">
-                <span className="w-5 h-5 rounded-full bg-orange-100 text-[#f58c01] font-bold flex items-center justify-center shrink-0 text-[11px]">
+                <span className="w-5 h-5 rounded-full bg-orange-100 dark:bg-orange-950/60 text-[#f58c01] font-bold flex items-center justify-center shrink-0 text-[11px]">
                   ১
                 </span>
                 <span>ক্রোম বা যেকোনো অ্যান্ড্রয়েড ব্রাউজারের উপরের <strong>থ্রি-ডট (⋮)</strong> মেনুতে চাপুন।</span>
               </div>
 
               <div className="flex items-start gap-2">
-                <span className="w-5 h-5 rounded-full bg-orange-100 text-[#f58c01] font-bold flex items-center justify-center shrink-0 text-[11px]">
+                <span className="w-5 h-5 rounded-full bg-orange-100 dark:bg-orange-950/60 text-[#f58c01] font-bold flex items-center justify-center shrink-0 text-[11px]">
                   ২
                 </span>
                 <span>তালিকা থেকে <strong>&quot;Install app&quot;</strong> বা <strong>&quot;Add to Home screen&quot;</strong> সিলেক্ট করুন।</span>
               </div>
 
               <div className="flex items-start gap-2">
-                <span className="w-5 h-5 rounded-full bg-orange-100 text-[#f58c01] font-bold flex items-center justify-center shrink-0 text-[11px]">
+                <span className="w-5 h-5 rounded-full bg-orange-100 dark:bg-orange-950/60 text-[#f58c01] font-bold flex items-center justify-center shrink-0 text-[11px]">
                   ৩
                 </span>
                 <span>আপনার ফোনের অ্যাপ মেনুতে ‘আল হিদায়াহ’ আইকন যুক্ত হয়ে যাবে এবং এটি একটি পূর্ণাঙ্গ নেটিভ অ্যাপের মতো অফলাইনেও চলবে!</span>
@@ -179,8 +179,8 @@ export const ApkInstallModal: React.FC<ApkInstallModalProps> = ({ isOpen, onClos
           </div>
 
           {/* WebAPK / PWABuilder developer note */}
-          <div className="border border-stone-200 rounded-2xl p-3 text-stone-600 text-[11px] space-y-1.5">
-            <span className="font-bold text-stone-800 flex items-center gap-1.5">
+          <div className="border border-stone-200 dark:border-stone-800 rounded-2xl p-3 text-stone-600 dark:text-stone-300 text-[11px] space-y-1.5">
+            <span className="font-bold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
               <Cpu className="w-3.5 h-3.5 text-[#f58c01]" />
               <span>স্বতন্ত্র APK তৈরি করতে চান?</span>
             </span>
@@ -199,10 +199,10 @@ export const ApkInstallModal: React.FC<ApkInstallModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Footer */}
-        <div className="pt-2 border-t border-stone-100 text-center">
+        <div className="pt-2 border-t border-stone-100 dark:border-stone-800 text-center">
           <button
             onClick={onClose}
-            className="w-full py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition-all"
+            className="w-full py-2.5 bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-750 text-stone-700 dark:text-stone-200 rounded-xl text-xs font-bold transition-all cursor-pointer"
           >
             বন্ধ করুন
           </button>

@@ -21,10 +21,10 @@ export const FavoritesScreen: React.FC<FavoritesScreenProps> = ({ onNavigateTab 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
-          <h2 className="text-base font-bold text-stone-900">পছন্দের অডিও তালিকা</h2>
+          <h2 className="text-base font-bold text-stone-900 dark:text-stone-100">পছন্দের অডিও তালিকা</h2>
         </div>
 
-        <span className="text-xs font-semibold text-stone-400">
+        <span className="text-xs font-semibold text-stone-400 dark:text-stone-500">
           {toBengaliNumber(favoriteAudios.length)} টি সংরক্ষিত
         </span>
       </div>
@@ -41,15 +41,15 @@ export const FavoritesScreen: React.FC<FavoritesScreenProps> = ({ onNavigateTab 
 
       {/* List */}
       {favoriteAudios.length === 0 ? (
-        <div className="bg-white rounded-3xl p-8 text-center border border-stone-200/90 shadow-xs flex flex-col items-center">
-          <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-400 flex items-center justify-center mb-3">
+        <div className="bg-white dark:bg-stone-900 rounded-3xl p-8 text-center border border-stone-200/90 dark:border-stone-800 shadow-xs flex flex-col items-center">
+          <div className="w-16 h-16 rounded-full bg-rose-50 dark:bg-rose-950/40 text-rose-400 dark:text-rose-500 flex items-center justify-center mb-3">
             <Heart className="w-8 h-8 stroke-[1.5]" />
           </div>
 
-          <h3 className="text-sm font-bold text-stone-800">
+          <h3 className="text-sm font-bold text-stone-800 dark:text-stone-200">
             পছন্দের কোনো অডিও যুক্ত করা হয়নি
           </h3>
-          <p className="text-xs text-stone-500 max-w-xs mt-1 leading-relaxed">
+          <p className="text-xs text-stone-500 dark:text-stone-400 max-w-xs mt-1 leading-relaxed">
             যেকোনো বয়ান বা তিলাওয়াত ভালো লাগলে হার্ট (❤️) আইকনে ট্যাপ করে এখানে সেভ করতে পারেন।
           </p>
 

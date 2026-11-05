@@ -55,20 +55,20 @@ export const CategoriesScreen: React.FC<CategoriesScreenProps> = ({
         {/* Back Button */}
         <button
           onClick={() => onSelectCategory(null)}
-          className="flex items-center gap-1.5 text-stone-600 hover:text-orange-600 font-semibold text-xs py-1 transition-colors"
+          className="flex items-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-orange-600 dark:hover:text-[#f58c01] font-semibold text-xs py-1 transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>সকল ক্যাটাগরিতে ফিরে যান</span>
         </button>
 
         {/* Category Header Card */}
-        <div className="bg-white text-stone-900 rounded-3xl p-5 border border-stone-200/90 shadow-sm">
+        <div className="bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 rounded-3xl p-5 border border-stone-200/90 dark:border-stone-800 shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-orange-50 text-[#f58c01] border border-orange-100 rounded-2xl">
+            <div className="p-3 bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] border border-orange-100 dark:border-orange-900/50 rounded-2xl">
               <Icon className="w-7 h-7 text-[#f58c01]" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-stone-900 leading-tight">
+              <h2 className="text-lg font-bold text-stone-900 dark:text-stone-100 leading-tight">
                 {selectedCategory.name}
               </h2>
               <p className="text-xs text-[#f58c01] font-semibold mt-0.5">
@@ -77,7 +77,7 @@ export const CategoriesScreen: React.FC<CategoriesScreenProps> = ({
             </div>
           </div>
 
-          <p className="text-xs text-stone-600 mt-3.5 leading-relaxed bg-stone-50 border border-stone-100 p-2.5 rounded-xl">
+          <p className="text-xs text-stone-600 dark:text-stone-300 mt-3.5 leading-relaxed bg-stone-50 dark:bg-stone-800/80 border border-stone-100 dark:border-stone-700/60 p-2.5 rounded-xl">
             {selectedCategory.description}
           </p>
 
@@ -95,7 +95,7 @@ export const CategoriesScreen: React.FC<CategoriesScreenProps> = ({
         {/* List of Audios */}
         <div className="space-y-2.5">
           {categoryAudios.length === 0 ? (
-            <div className="bg-white rounded-2xl p-6 text-center text-stone-400 text-xs border border-stone-200">
+            <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 text-center text-stone-400 dark:text-stone-500 text-xs border border-stone-200 dark:border-stone-800">
               এই ক্যাটাগরিতে আরও নতুন অডিও খুব দ্রুত যুক্ত করা হবে।
             </div>
           ) : (
@@ -116,9 +116,9 @@ export const CategoriesScreen: React.FC<CategoriesScreenProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Grid className="w-5 h-5 text-[#f58c01]" />
-          <h2 className="text-base font-bold text-stone-900">বিষয়ভিত্তিক ক্যাটাগরি</h2>
+          <h2 className="text-base font-bold text-stone-900 dark:text-stone-100">বিষয়ভিত্তিক ক্যাটাগরি</h2>
         </div>
-        <span className="text-xs font-semibold text-stone-400">
+        <span className="text-xs font-semibold text-stone-400 dark:text-stone-500">
           {toBengaliNumber(categories.length)} টি বিভাগ
         </span>
       </div>
@@ -131,27 +131,27 @@ export const CategoriesScreen: React.FC<CategoriesScreenProps> = ({
             <div
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className="group bg-white rounded-2xl p-4 border border-stone-200/90 hover:border-[#f58c01] shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between active:scale-[0.98]"
+              className="group bg-white dark:bg-stone-900 rounded-2xl p-4 border border-stone-200/90 dark:border-stone-800 hover:border-[#f58c01] dark:hover:border-[#f58c01] shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between active:scale-[0.98]"
             >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#f58c01] flex items-center justify-center group-hover:bg-[#f58c01] group-hover:text-white transition-colors mb-3">
+                <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] flex items-center justify-center group-hover:bg-[#f58c01] group-hover:text-white transition-colors mb-3">
                   <Icon className="w-5 h-5" />
                 </div>
 
-                <h3 className="text-sm font-bold text-stone-800 group-hover:text-[#f58c01] transition-colors line-clamp-1 leading-snug">
+                <h3 className="text-sm font-bold text-stone-800 dark:text-stone-200 group-hover:text-[#f58c01] transition-colors line-clamp-1 leading-snug">
                   {cat.name}
                 </h3>
 
-                <p className="text-[11px] text-stone-500 line-clamp-2 mt-1 leading-snug">
+                <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-2 mt-1 leading-snug">
                   {cat.description}
                 </p>
               </div>
 
-              <div className="mt-3 pt-2 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400 font-medium">
+              <div className="mt-3 pt-2 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between text-[11px] text-stone-400 dark:text-stone-500 font-medium">
                 <span className="text-[#f58c01] font-semibold">
                   {toBengaliNumber(cat.audioCount)} অডিও
                 </span>
-                <Play className="w-3 h-3 text-stone-300 group-hover:text-[#f58c01] group-hover:translate-x-0.5 transition-all" />
+                <Play className="w-3 h-3 text-stone-300 dark:text-stone-600 group-hover:text-[#f58c01] group-hover:translate-x-0.5 transition-all" />
               </div>
             </div>
           );

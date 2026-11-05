@@ -86,13 +86,13 @@ export const FullPlayerModal: React.FC = () => {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 bg-white/98 text-stone-900 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto animate-in slide-in-from-bottom duration-300">
+    <div className="fixed inset-0 z-50 bg-white/98 dark:bg-stone-950/98 text-stone-900 dark:text-stone-100 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto animate-in slide-in-from-bottom duration-300">
       
       {/* Top Bar */}
-      <div className="max-w-md mx-auto w-full px-5 pt-[calc(1rem+env(safe-area-inset-top,0px))] pb-2 flex items-center justify-between text-stone-900 border-b border-stone-100">
+      <div className="max-w-md mx-auto w-full px-5 pt-[calc(1rem+env(safe-area-inset-top,0px))] pb-2 flex items-center justify-between text-stone-900 dark:text-stone-100 border-b border-stone-100 dark:border-stone-800">
         <button
           onClick={() => setIsFullPlayerOpen(false)}
-          className="p-2 -ml-2 rounded-full hover:bg-stone-100 active:scale-95 text-stone-700 hover:text-stone-900 transition-all cursor-pointer"
+          className="p-2 -ml-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all cursor-pointer"
           aria-label="প্লেয়ার নামিয়ে রাখুন"
         >
           <ChevronDown className="w-6 h-6" />
@@ -102,7 +102,7 @@ export const FullPlayerModal: React.FC = () => {
           <span className="text-[11px] font-bold tracking-wider uppercase text-[#f58c01]">
             বর্তমানে শুনছেন
           </span>
-          <p className="text-xs text-stone-600 truncate max-w-[200px] font-medium">
+          <p className="text-xs text-stone-600 dark:text-stone-400 truncate max-w-[200px] font-medium">
             {currentAudio.category}
           </p>
         </div>
@@ -110,19 +110,19 @@ export const FullPlayerModal: React.FC = () => {
         <div className="flex items-center gap-1 -mr-2">
           <button
             onClick={() => toggleFavorite(currentAudio.id)}
-            className="p-2 rounded-full hover:bg-stone-100 active:scale-95 transition-all cursor-pointer"
+            className="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 transition-all cursor-pointer"
             aria-label="পছন্দ করুন"
           >
             <Heart 
               className={`w-5 h-5 transition-colors ${
-                isFav ? 'fill-rose-500 text-rose-500' : 'text-stone-400 hover:text-stone-600'
+                isFav ? 'fill-rose-500 text-rose-500' : 'text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300'
               }`} 
             />
           </button>
 
           <button
             onClick={handleShare}
-            className="p-2 rounded-full hover:bg-stone-100 active:scale-95 text-stone-700 hover:text-stone-900 transition-all cursor-pointer"
+            className="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all cursor-pointer"
             aria-label="শেয়ার করুন"
           >
             <Share2 className="w-5 h-5" />
@@ -142,7 +142,7 @@ export const FullPlayerModal: React.FC = () => {
             }`} 
           />
 
-          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-2 border-stone-200 bg-stone-100 group">
+          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-2 border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-850 group">
             <img 
               src={currentAudio.speakerImage} 
               alt={currentAudio.speakerName}
@@ -158,7 +158,7 @@ export const FullPlayerModal: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-black/10" />
 
             {/* Category Badge on artwork */}
-            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-stone-200/90 text-[11px] font-bold text-[#f58c01] flex items-center gap-1.5 shadow-sm">
+            <div className="absolute top-3 left-3 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md px-3 py-1 rounded-full border border-stone-200/90 dark:border-stone-700 text-[11px] font-bold text-[#f58c01] flex items-center gap-1.5 shadow-sm">
               <Sparkles className="w-3 h-3 text-[#f58c01]" />
               <span>{currentAudio.category}</span>
             </div>
@@ -183,14 +183,14 @@ export const FullPlayerModal: React.FC = () => {
 
         {/* Audio Meta Details */}
         <div className="w-full text-center mt-5 mb-2">
-          <h2 className="text-lg sm:text-xl font-bold text-stone-900 line-clamp-2 leading-snug">
+          <h2 className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100 line-clamp-2 leading-snug">
             {currentAudio.title}
           </h2>
           <p className="text-sm font-semibold text-[#f58c01] mt-1">
             {currentAudio.speakerName}
           </p>
           {currentAudio.seriesName && (
-            <span className="inline-block mt-1 text-[11px] text-stone-600 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-full font-medium">
+            <span className="inline-block mt-1 text-[11px] text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 px-2.5 py-0.5 rounded-full font-medium">
               সিরিজ: {currentAudio.seriesName}
             </span>
           )}
@@ -206,11 +206,11 @@ export const FullPlayerModal: React.FC = () => {
               value={currentTime}
               onChange={(e) => seek(Number(e.target.value))}
               aria-label="অডিও টেনে সময় পরিবর্তন করুন"
-              className="w-full h-1.5 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-[#f58c01]"
+              className="w-full h-1.5 bg-stone-200 dark:bg-stone-800 rounded-lg appearance-none cursor-pointer accent-[#f58c01]"
             />
           </div>
 
-          <div className="flex justify-between items-center text-xs font-mono text-stone-500 mt-1.5 px-0.5">
+          <div className="flex justify-between items-center text-xs font-mono text-stone-500 dark:text-stone-400 mt-1.5 px-0.5">
             <span>{formatDurationBengali(currentTime)}</span>
             <span>{formatDurationBengali(duration || currentAudio.duration)}</span>
           </div>
@@ -226,8 +226,8 @@ export const FullPlayerModal: React.FC = () => {
               else setPlayMode('normal');
             }}
             aria-label="পুনরাবৃত্তি মোড"
-            className={`p-2.5 rounded-full hover:bg-stone-100 transition-all cursor-pointer ${
-              playMode !== 'normal' ? 'text-[#f58c01] bg-orange-50 border border-orange-200/70' : 'text-stone-600 hover:text-stone-900'
+            className={`p-2.5 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-all cursor-pointer ${
+              playMode !== 'normal' ? 'text-[#f58c01] bg-orange-50 dark:bg-orange-950/40 border border-orange-200/70 dark:border-orange-900/60' : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
             }`}
             title={
               playMode === 'repeat-one' ? 'একটি অডিও পুনরাবৃত্তি' :
@@ -245,7 +245,7 @@ export const FullPlayerModal: React.FC = () => {
           <button
             onClick={prevTrack}
             aria-label="পূর্ববর্তী অডিও"
-            className="p-2.5 text-stone-700 hover:text-stone-900 hover:bg-stone-100 rounded-full active:scale-95 transition-all cursor-pointer"
+            className="p-2.5 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-full active:scale-95 transition-all cursor-pointer"
           >
             <SkipBack className="w-6 h-6" />
           </button>
@@ -254,7 +254,7 @@ export const FullPlayerModal: React.FC = () => {
           <button
             onClick={() => skipSeconds(-10)}
             aria-label="১০ সেকেন্ড পেছনে"
-            className="p-2.5 text-stone-700 hover:text-stone-900 hover:bg-stone-100 rounded-full active:scale-95 transition-all cursor-pointer"
+            className="p-2.5 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-full active:scale-95 transition-all cursor-pointer"
             title="১০ সেকেন্ড পেছনে"
           >
             <RotateCcw className="w-5 h-5" />
@@ -279,7 +279,7 @@ export const FullPlayerModal: React.FC = () => {
           <button
             onClick={() => skipSeconds(10)}
             aria-label="১০ সেকেন্ড সামনে"
-            className="p-2.5 text-stone-700 hover:text-stone-900 hover:bg-stone-100 rounded-full active:scale-95 transition-all cursor-pointer"
+            className="p-2.5 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-full active:scale-95 transition-all cursor-pointer"
             title="১০ সেকেন্ড সামনে"
           >
             <RotateCw className="w-5 h-5" />
@@ -289,7 +289,7 @@ export const FullPlayerModal: React.FC = () => {
           <button
             onClick={nextTrack}
             aria-label="পরবর্তী অডিও"
-            className="p-2.5 text-stone-700 hover:text-stone-900 hover:bg-stone-100 rounded-full active:scale-95 transition-all cursor-pointer"
+            className="p-2.5 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-full active:scale-95 transition-all cursor-pointer"
           >
             <SkipForward className="w-6 h-6" />
           </button>
@@ -301,10 +301,10 @@ export const FullPlayerModal: React.FC = () => {
             aria-label={downloaded ? 'ডাউনলোডকৃত' : 'ডাউনলোড করুন'}
             className={`p-2.5 rounded-full transition-all cursor-pointer ${
               downloaded 
-                ? 'text-emerald-600 bg-emerald-50 cursor-default' 
+                ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 cursor-default' 
                 : dlProgress !== undefined 
                 ? 'text-[#f58c01]' 
-                : 'text-stone-600 hover:text-[#f58c01] hover:bg-stone-100 active:scale-95'
+                : 'text-stone-600 dark:text-stone-300 hover:text-[#f58c01] hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95'
             }`}
             title={downloaded ? 'অফলাইনে সেভ আছে' : 'অফলাইনে ডাউনলোড করুন'}
           >
@@ -321,8 +321,8 @@ export const FullPlayerModal: React.FC = () => {
       </div>
 
       {/* Bottom Auxiliary Controls (Speed, Sleep Timer, Quality) */}
-      <div className="max-w-md mx-auto w-full px-6 py-4 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] border-t border-stone-200 bg-stone-50/95 backdrop-blur-md">
-        <div className="flex items-center justify-between text-xs text-stone-600">
+      <div className="max-w-md mx-auto w-full px-6 py-4 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] border-t border-stone-200 dark:border-stone-800 bg-stone-50/95 dark:bg-stone-900/95 backdrop-blur-md">
+        <div className="flex items-center justify-between text-xs text-stone-600 dark:text-stone-300">
           
           {/* Playback Speed Button & Dropdown */}
           <div className="relative">
@@ -331,14 +331,14 @@ export const FullPlayerModal: React.FC = () => {
                 setShowSpeedMenu(!showSpeedMenu);
                 setShowTimerMenu(false);
               }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200/90 hover:bg-stone-100 text-stone-700 transition-colors shadow-xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-stone-800 border border-stone-200/90 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-750 text-stone-700 dark:text-stone-200 transition-colors shadow-xs cursor-pointer"
             >
               <Gauge className="w-3.5 h-3.5 text-[#f58c01]" />
               <span className="font-semibold">গতি: {toBengaliNumber(playbackRate)}x</span>
             </button>
 
             {showSpeedMenu && (
-              <div className="absolute bottom-10 left-0 bg-white border border-stone-200 rounded-xl shadow-2xl p-1.5 flex flex-col gap-1 min-w-[110px] z-20 animate-in fade-in zoom-in-95">
+              <div className="absolute bottom-10 left-0 bg-white dark:bg-stone-850 border border-stone-200 dark:border-stone-700 rounded-xl shadow-2xl p-1.5 flex flex-col gap-1 min-w-[110px] z-20 animate-in fade-in zoom-in-95">
                 {speedOptions.map((rate) => (
                   <button
                     key={rate}
@@ -349,7 +349,7 @@ export const FullPlayerModal: React.FC = () => {
                     className={`px-3 py-1.5 text-left rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                       playbackRate === rate 
                         ? 'bg-[#f58c01] text-white font-bold' 
-                        : 'text-stone-700 hover:bg-stone-100'
+                        : 'text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800'
                     }`}
                   >
                     {toBengaliNumber(rate)}x {rate === 1.0 && '(স্বাভাবিক)'}
@@ -368,8 +368,8 @@ export const FullPlayerModal: React.FC = () => {
               }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-colors shadow-xs cursor-pointer ${
                 sleepTimerMinutes 
-                  ? 'bg-orange-50 text-[#f58c01] border border-orange-200/80 font-bold' 
-                  : 'bg-white border border-stone-200/90 hover:bg-stone-100 text-stone-700 font-medium'
+                  ? 'bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] border border-orange-200/80 dark:border-orange-900/60 font-bold' 
+                  : 'bg-white dark:bg-stone-800 border border-stone-200/90 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-750 text-stone-700 dark:text-stone-200 font-medium'
               }`}
             >
               <Clock className="w-3.5 h-3.5 text-[#f58c01]" />
@@ -381,7 +381,7 @@ export const FullPlayerModal: React.FC = () => {
             </button>
 
             {showTimerMenu && (
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white border border-stone-200 rounded-xl shadow-2xl p-1.5 flex flex-col gap-1 min-w-[130px] z-20 animate-in fade-in zoom-in-95">
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white dark:bg-stone-850 border border-stone-200 dark:border-stone-700 rounded-xl shadow-2xl p-1.5 flex flex-col gap-1 min-w-[130px] z-20 animate-in fade-in zoom-in-95">
                 {timerOptions.map((opt) => (
                   <button
                     key={opt.label}
@@ -392,7 +392,7 @@ export const FullPlayerModal: React.FC = () => {
                     className={`px-3 py-1.5 text-left rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                       sleepTimerMinutes === opt.value 
                         ? 'bg-[#f58c01] text-white font-bold' 
-                        : 'text-stone-700 hover:bg-stone-100'
+                        : 'text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800'
                     }`}
                   >
                     {opt.label}
@@ -403,7 +403,7 @@ export const FullPlayerModal: React.FC = () => {
           </div>
 
           {/* Audio Quality indicator */}
-          <div className="flex items-center gap-1 text-[11px] text-stone-600 bg-white px-2.5 py-1.5 rounded-xl border border-stone-200/90 shadow-xs">
+          <div className="flex items-center gap-1 text-[11px] text-stone-600 dark:text-stone-300 bg-white dark:bg-stone-800 px-2.5 py-1.5 rounded-xl border border-stone-200/90 dark:border-stone-700 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="font-semibold">HD ১২৮ kbps</span>
           </div>

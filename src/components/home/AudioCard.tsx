@@ -52,16 +52,16 @@ export const AudioCard: React.FC<AudioCardProps> = ({ audio, playlist }) => {
   return (
     <div 
       onClick={handlePlayClick}
-      className={`group relative bg-white rounded-2xl p-3.5 transition-all duration-200 border cursor-pointer select-none active:scale-[0.99] shadow-xs hover:shadow-md ${
+      className={`group relative bg-white dark:bg-stone-900 rounded-2xl p-3.5 transition-all duration-200 border cursor-pointer select-none active:scale-[0.99] shadow-xs hover:shadow-md ${
         isCurrent 
-          ? 'border-[#f58c01] bg-orange-50/20 ring-1 ring-[#f58c01]/40' 
-          : 'border-stone-200/90 hover:border-orange-300'
+          ? 'border-[#f58c01] bg-orange-50/20 dark:bg-orange-950/20 ring-1 ring-[#f58c01]/40' 
+          : 'border-stone-200/90 dark:border-stone-800 hover:border-orange-300 dark:hover:border-stone-700'
       }`}
     >
       <div className="flex items-start gap-3.5">
         
         {/* Speaker Thumbnail */}
-        <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200/80 shadow-xs">
+        <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden shrink-0 bg-stone-100 dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 shadow-xs">
           <img 
             src={audio.speakerImage} 
             alt={audio.speakerName}
@@ -95,39 +95,39 @@ export const AudioCard: React.FC<AudioCardProps> = ({ audio, playlist }) => {
         <div className="min-w-0 flex-1 flex flex-col justify-between self-stretch">
           <div>
             <h3 className={`text-sm font-bold line-clamp-2 leading-tight transition-colors ${
-              isCurrent ? 'text-[#f58c01]' : 'text-stone-900 group-hover:text-[#f58c01]'
+              isCurrent ? 'text-[#f58c01]' : 'text-stone-900 dark:text-stone-100 group-hover:text-[#f58c01]'
             }`}>
               {audio.title}
             </h3>
             
-            <p className="text-xs font-medium text-stone-600 mt-1 flex items-center gap-1 truncate">
+            <p className="text-xs font-medium text-stone-600 dark:text-stone-300 mt-1 flex items-center gap-1 truncate">
               <span>{audio.speakerName}</span>
               {audio.seriesName && (
                 <>
-                  <span className="text-stone-300">•</span>
+                  <span className="text-stone-300 dark:text-stone-600">•</span>
                   <span className="text-[#f58c01]/90 text-[11px] truncate">{audio.seriesName}</span>
                 </>
               )}
             </p>
 
-            <p className="text-[11px] text-stone-500 line-clamp-1 mt-1 leading-snug">
+            <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-1 mt-1 leading-snug">
               {audio.description}
             </p>
           </div>
 
           {/* Meta Badges */}
-          <div className="flex items-center gap-2.5 mt-2 text-[10px] text-stone-400 font-medium">
-            <span className="flex items-center gap-0.5 text-stone-500">
-              <Clock className="w-3 h-3 text-stone-400" />
+          <div className="flex items-center gap-2.5 mt-2 text-[10px] text-stone-400 dark:text-stone-500 font-medium">
+            <span className="flex items-center gap-0.5 text-stone-500 dark:text-stone-400">
+              <Clock className="w-3 h-3 text-stone-400 dark:text-stone-500" />
               {formatDurationBengali(audio.duration)}
             </span>
             <span>•</span>
-            <span className="flex items-center gap-0.5 text-stone-500">
-              <Headphones className="w-3 h-3 text-stone-400" />
+            <span className="flex items-center gap-0.5 text-stone-500 dark:text-stone-400">
+              <Headphones className="w-3 h-3 text-stone-400 dark:text-stone-500" />
               {formatPlayCountBengali(audio.playCount)}
             </span>
             <span>•</span>
-            <span className="text-stone-400">{formatFileSizeBengali(audio.fileSizeMb)}</span>
+            <span className="text-stone-400 dark:text-stone-500">{formatFileSizeBengali(audio.fileSizeMb)}</span>
           </div>
         </div>
 
@@ -138,12 +138,12 @@ export const AudioCard: React.FC<AudioCardProps> = ({ audio, playlist }) => {
           <button
             onClick={handleFavoriteClick}
             aria-label="পছন্দ"
-            className="p-1.5 rounded-full text-stone-300 hover:text-rose-500 active:scale-90 transition-all cursor-pointer"
+            className="p-1.5 rounded-full text-stone-300 dark:text-stone-600 hover:text-rose-500 active:scale-90 transition-all cursor-pointer"
             title="পছন্দের তালিকায় রাখুন"
           >
             <Heart 
               className={`w-4 h-4 transition-colors ${
-                isFav ? 'fill-rose-500 text-rose-500' : 'text-stone-300 hover:text-stone-400'
+                isFav ? 'fill-rose-500 text-rose-500' : 'text-stone-300 dark:text-stone-600 hover:text-stone-400 dark:hover:text-stone-400'
               }`} 
             />
           </button>
@@ -155,10 +155,10 @@ export const AudioCard: React.FC<AudioCardProps> = ({ audio, playlist }) => {
             aria-label={downloaded ? 'ডাউনলোড সম্পন্ন' : 'অফলাইনে ডাউনলোড করুন'}
             className={`p-1.5 rounded-full transition-all cursor-pointer ${
               downloaded 
-                ? 'text-emerald-600 bg-emerald-50' 
+                ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40' 
                 : dlProgress !== undefined 
                 ? 'text-[#f58c01]' 
-                : 'text-stone-400 hover:text-[#f58c01] hover:bg-orange-50 active:scale-90'
+                : 'text-stone-400 dark:text-stone-500 hover:text-[#f58c01] dark:hover:text-[#f58c01] hover:bg-orange-50 dark:hover:bg-stone-800 active:scale-90'
             }`}
             title={downloaded ? 'অফলাইনে সংরক্ষিত' : 'ডাউনলোড'}
           >
@@ -178,7 +178,7 @@ export const AudioCard: React.FC<AudioCardProps> = ({ audio, playlist }) => {
             className={`p-2 rounded-xl transition-all shadow-xs flex items-center justify-center active:scale-95 cursor-pointer ${
               isPlayingNow 
                 ? 'bg-[#f58c01] text-white shadow-md shadow-orange-500/25' 
-                : 'bg-orange-50 text-[#f58c01] hover:bg-[#f58c01] hover:text-white'
+                : 'bg-orange-50 dark:bg-stone-800 text-[#f58c01] hover:bg-[#f58c01] hover:text-white'
             }`}
           >
             {isPlayingNow ? (

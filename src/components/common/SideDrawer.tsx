@@ -11,10 +11,11 @@ import {
   Info, 
   Smartphone, 
   Share2, 
-  MessageSquare,
-  ChevronRight,
-  ExternalLink,
-  RefreshCw
+  ChevronRight, 
+  ExternalLink, 
+  RefreshCw,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { Logo } from './Logo';
 import { toBengaliNumber } from '../../utils/bengaliUtils';
@@ -42,9 +43,29 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
   onOpenInstallModal,
   onOpenSleepTimer
 }) => {
-  const { downloads, favorites, sleepTimerMinutes, showToast, catalog, refreshCatalog, isCatalogLoading } = useAudioPlayer();
+  const { 
+    downloads, 
+    favorites, 
+    sleepTimerMinutes, 
+    showToast, 
+    catalog, 
+    refreshCatalog, 
+    isCatalogLoading,
+    settings,
+    updateSettings 
+  } = useAudioPlayer();
 
   if (!isOpen) return null;
+
+  const isDarkMode = 
+    settings.theme === 'dark' || 
+    (settings.theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  const toggleTheme = () => {
+    const nextTheme = isDarkMode ? 'light' : 'dark';
+    updateSettings({ theme: nextTheme });
+    showToast(nextTheme === 'dark' ? 'ডার্ক থিম সক্রিয় করা হয়েছে' : 'লাইট থিম সক্রিয় করা হয়েছে', 'info');
+  };
 
   const handleNav = (tab: TabType) => {
     onSelectTab(tab);
@@ -72,19 +93,19 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
     <div className="fixed inset-0 z-50 flex">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-stone-900/60 backdrop-blur-xs transition-opacity animate-in fade-in"
-        onClick={onClose}
+        className="fixed inset-0 bg-stone-900/60 dark:bg-black/80 backdrop-blur-xs transition-opacity animate-in fade-in"
+        onClick={onClose} 
       />
 
       {/* Drawer Container */}
-      <div className="relative w-4/5 max-w-xs h-full bg-white shadow-2xl flex flex-col z-10 animate-in slide-in-from-left duration-250">
+      <div className="relative w-4/5 max-w-xs h-full bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-2xl flex flex-col z-10 border-r border-stone-200 dark:border-stone-800 animate-in slide-in-from-left duration-250">
         
         {/* Drawer Header */}
-        <div className="bg-white p-5 pt-[calc(1.25rem+env(safe-area-inset-top,0px))] text-stone-900 border-b border-stone-200 relative">
+        <div className="bg-white dark:bg-stone-900 p-5 pt-[calc(1.25rem+env(safe-area-inset-top,0px))] text-stone-900 dark:text-stone-100 border-b border-stone-200 dark:border-stone-800 relative">
           <button 
             onClick={onClose}
             aria-label="মেনু বন্ধ করুন"
-            className="absolute top-[calc(1rem+env(safe-area-inset-top,0px))] right-4 p-1.5 rounded-full hover:bg-stone-100 active:scale-95 text-stone-400 hover:text-stone-700 transition-all cursor-pointer"
+            className="absolute top-[calc(1rem+env(safe-area-inset-top,0px))] right-4 p-1.5 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-all cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -92,7 +113,7 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
           <div className="flex items-center gap-3 mt-1">
             <Logo size="md" variant="orange" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-stone-900 leading-tight">
+              <h2 className="text-xl font-bold tracking-tight text-stone-900 dark:text-stone-100 leading-tight">
                 আল হিদায়াহ অডিও
               </h2>
               <p className="text-xs text-[#f58c01] font-semibold mt-0.5">
@@ -102,20 +123,20 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
           </div>
 
           {/* Quick Counters */}
-          <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-stone-100 text-xs">
+          <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-stone-100 dark:border-stone-800 text-xs">
             <div 
               onClick={() => handleNav('downloads')}
-              className="bg-stone-50 hover:bg-orange-50/60 border border-stone-200/80 rounded-xl p-2.5 text-center cursor-pointer transition-colors"
+              className="bg-stone-50 dark:bg-stone-800/70 hover:bg-orange-50/60 dark:hover:bg-orange-950/20 border border-stone-200/80 dark:border-stone-700/60 rounded-xl p-2.5 text-center cursor-pointer transition-colors"
             >
               <span className="block font-bold text-sm text-[#f58c01]">{toBengaliNumber(downloads.length)}</span>
-              <span className="text-[11px] text-stone-600">ডাউনলোডকৃত</span>
+              <span className="text-[11px] text-stone-600 dark:text-stone-300">ডাউনলোডকৃত</span>
             </div>
             <div 
               onClick={() => handleNav('favorites')}
-              className="bg-stone-50 hover:bg-orange-50/60 border border-stone-200/80 rounded-xl p-2.5 text-center cursor-pointer transition-colors"
+              className="bg-stone-50 dark:bg-stone-800/70 hover:bg-orange-50/60 dark:hover:bg-orange-950/20 border border-stone-200/80 dark:border-stone-700/60 rounded-xl p-2.5 text-center cursor-pointer transition-colors"
             >
               <span className="block font-bold text-sm text-[#f58c01]">{toBengaliNumber(favorites.length)}</span>
-              <span className="text-[11px] text-stone-600">পছন্দের অডিও</span>
+              <span className="text-[11px] text-stone-600 dark:text-stone-300">পছন্দের অডিও</span>
             </div>
           </div>
         </div>
@@ -124,88 +145,106 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
         <div className="flex-1 overflow-y-auto py-3 px-3 space-y-1">
           
           {/* Main Navigation Group */}
-          <div className="text-[11px] font-semibold text-stone-400 px-3 py-1 uppercase tracking-wider">
+          <div className="text-[11px] font-semibold text-stone-400 dark:text-stone-500 px-3 py-1 uppercase tracking-wider">
             প্রধান নেভিগেশন
           </div>
 
           <button
             onClick={() => handleNav('home')}
-            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-3">
               <Home className="w-4 h-4 text-orange-500" />
               <span>মূল পাতা</span>
             </div>
-            <ChevronRight className="w-4 h-4 text-stone-400" />
+            <ChevronRight className="w-4 h-4 text-stone-400 dark:text-stone-500" />
           </button>
 
           <button
             onClick={() => handleNav('speakers')}
-            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-3">
               <Mic2 className="w-4 h-4 text-orange-500" />
               <span>বক্তাগণ ও দাঈ</span>
             </div>
-            <ChevronRight className="w-4 h-4 text-stone-400" />
+            <ChevronRight className="w-4 h-4 text-stone-400 dark:text-stone-500" />
           </button>
 
           <button
             onClick={() => handleNav('categories')}
-            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-3">
               <Grid className="w-4 h-4 text-orange-500" />
               <span>ক্যাটাগরি ও বিষয়সমূহ</span>
             </div>
-            <ChevronRight className="w-4 h-4 text-stone-400" />
+            <ChevronRight className="w-4 h-4 text-stone-400 dark:text-stone-500" />
           </button>
 
           <button
             onClick={() => handleNav('downloads')}
-            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-3">
               <Download className="w-4 h-4 text-orange-500" />
               <span>ডাউনলোডসমূহ</span>
             </div>
-            <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-semibold">
+            <span className="text-xs bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300 px-2 py-0.5 rounded-full font-semibold">
               {toBengaliNumber(downloads.length)}
             </span>
           </button>
 
           <button
             onClick={() => handleNav('favorites')}
-            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-3">
               <Heart className="w-4 h-4 text-orange-500" />
               <span>পছন্দের তালিকা</span>
             </div>
-            <span className="text-xs bg-rose-50 text-rose-600 px-2 py-0.5 rounded-full font-semibold">
+            <span className="text-xs bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 px-2 py-0.5 rounded-full font-semibold">
               {toBengaliNumber(favorites.length)}
             </span>
           </button>
 
           {/* Tools & Utilities Group */}
           <div className="pt-3">
-            <div className="text-[11px] font-semibold text-stone-400 px-3 py-1 uppercase tracking-wider">
+            <div className="text-[11px] font-semibold text-stone-400 dark:text-stone-500 px-3 py-1 uppercase tracking-wider">
               সুবিধাসমূহ
             </div>
+
+            {/* Quick Theme Switch Row */}
+            <button
+              onClick={toggleTheme}
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                {isDarkMode ? (
+                  <Sun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <Moon className="w-4 h-4 text-indigo-500" />
+                )}
+                <span>থিম পরিবর্তন ({isDarkMode ? 'ডার্ক সক্রিয়' : 'লাইট সক্রিয়'})</span>
+              </div>
+              <span className="text-[11px] bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 px-2 py-0.5 rounded-md font-semibold border border-stone-200 dark:border-stone-700">
+                {isDarkMode ? '🌙 ডার্ক' : '☀️ লাইট'}
+              </span>
+            </button>
 
             <button
               onClick={() => {
                 onOpenSleepTimer();
                 onClose();
               }}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <Clock className="w-4 h-4 text-amber-500" />
                 <span>ঘুমের টাইমার (Sleep Timer)</span>
               </div>
               {sleepTimerMinutes && (
-                <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-semibold">
+                <span className="text-xs bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full font-semibold">
                   চালু
                 </span>
               )}
@@ -216,13 +255,13 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
                 onOpenSettings();
                 onClose();
               }}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <Settings className="w-4 h-4 text-stone-500" />
-                <span>সেটিংস</span>
+                <Settings className="w-4 h-4 text-stone-500 dark:text-stone-400" />
+                <span>সেটিংস ও থিম অপশন</span>
               </div>
-              <ChevronRight className="w-4 h-4 text-stone-400" />
+              <ChevronRight className="w-4 h-4 text-stone-400 dark:text-stone-500" />
             </button>
 
             <button
@@ -230,13 +269,13 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
                 await refreshCatalog(true);
               }}
               disabled={isCatalogLoading}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors cursor-pointer"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <RefreshCw className={`w-4 h-4 text-orange-500 ${isCatalogLoading ? 'animate-spin' : ''}`} />
                 <span>নতুন অডিও আপডেট দেখুন</span>
               </div>
-              <span className="text-[11px] bg-orange-100 text-orange-800 px-2 py-0.5 rounded-full font-semibold">
+              <span className="text-[11px] bg-orange-100 dark:bg-orange-950/60 text-orange-800 dark:text-orange-300 px-2 py-0.5 rounded-full font-semibold">
                 {isCatalogLoading ? 'খোঁজা হচ্ছে' : `${toBengaliNumber(catalog.totalAudios)}টি অডিও`}
               </span>
             </button>
@@ -244,7 +283,7 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
 
           {/* App Info & About Group */}
           <div className="pt-3">
-            <div className="text-[11px] font-semibold text-stone-400 px-3 py-1 uppercase tracking-wider">
+            <div className="text-[11px] font-semibold text-stone-400 dark:text-stone-500 px-3 py-1 uppercase tracking-wider">
               অ্যাপ পরিচিতি ও সাহায্য
             </div>
 
@@ -253,13 +292,13 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
                 onOpenAbout();
                 onClose();
               }}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <Info className="w-4 h-4 text-blue-500" />
                 <span>আমাদের সম্পর্কে</span>
               </div>
-              <ChevronRight className="w-4 h-4 text-stone-400" />
+              <ChevronRight className="w-4 h-4 text-stone-400 dark:text-stone-500" />
             </button>
 
             <button
@@ -267,13 +306,13 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
                 onOpenOtherApps();
                 onClose();
               }}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <ExternalLink className="w-4 h-4 text-emerald-500" />
                 <span>অন্যান্য ইসলামিক অ্যাপ</span>
               </div>
-              <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-md font-semibold">
+              <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 px-1.5 py-0.5 rounded-md font-semibold">
                 নতুন
               </span>
             </button>
@@ -283,7 +322,7 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
                 onOpenInstallModal();
                 onClose();
               }}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-orange-50/80 hover:bg-orange-100/80 border border-orange-200/60 text-stone-900 text-sm font-medium transition-colors cursor-pointer"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-orange-50/80 dark:bg-orange-950/30 hover:bg-orange-100/80 dark:hover:bg-orange-900/40 border border-orange-200/60 dark:border-orange-900/50 text-stone-900 dark:text-stone-100 text-sm font-medium transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <Smartphone className="w-4 h-4 text-[#f58c01]" />
@@ -296,7 +335,7 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
 
             <button
               onClick={handleShare}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 text-stone-700 hover:text-orange-600 text-sm font-medium transition-colors"
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-[#f58c01] text-sm font-medium transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <Share2 className="w-4 h-4 text-indigo-500" />
@@ -308,11 +347,11 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
         </div>
 
         {/* Drawer Footer */}
-        <div className="p-3 bg-stone-50 border-t border-stone-200 text-center">
-          <p className="text-[11px] text-stone-500">
+        <div className="p-3 bg-stone-50 dark:bg-stone-900/90 border-t border-stone-200 dark:border-stone-800 text-center">
+          <p className="text-[11px] text-stone-500 dark:text-stone-400">
             আল হিদায়াহ অডিও সংস্করণ {toBengaliNumber('1.4.0')}
           </p>
-          <p className="text-[10px] text-stone-400 mt-0.5">
+          <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
             সদকায়ে জারিয়া ও দাওয়াহ প্রচারের উদ্দেশ্যে নিবেদিত
           </p>
         </div>

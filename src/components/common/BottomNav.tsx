@@ -22,7 +22,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/80 shadow-lg safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-t border-stone-200/80 dark:border-stone-800/80 shadow-lg safe-area-bottom transition-colors">
       <div className="max-w-md mx-auto grid grid-cols-5 px-1 py-1.5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -33,7 +33,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
               className={`relative flex flex-col items-center justify-center py-1 rounded-xl transition-all select-none cursor-pointer ${
-                isActive ? 'text-[#f58c01] font-bold' : 'text-stone-500 hover:text-stone-700 font-medium'
+                isActive ? 'text-[#f58c01] font-bold' : 'text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 font-medium'
               }`}
             >
               <div className="relative">
@@ -47,7 +47,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
                   <span className={`absolute -top-1.5 -right-2.5 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full text-[9px] font-bold leading-none shadow-xs ${
                     isActive 
                       ? 'bg-[#f58c01] text-white' 
-                      : 'bg-stone-200 text-stone-700'
+                      : 'bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300'
                   }`}>
                     {toBengaliNumber(tab.badge)}
                   </span>
@@ -55,7 +55,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
               </div>
 
               <span className={`text-[11px] mt-1 tracking-tight leading-tight transition-all ${
-                isActive ? 'text-[#f58c01] scale-100 font-bold' : 'text-stone-500'
+                isActive ? 'text-[#f58c01] scale-100 font-bold' : 'text-stone-500 dark:text-stone-400'
               }`}>
                 {tab.label}
               </span>

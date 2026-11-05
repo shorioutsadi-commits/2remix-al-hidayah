@@ -102,15 +102,15 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
         {/* Back Button */}
         <button
           onClick={() => onSelectSpeaker(null)}
-          className="flex items-center gap-1.5 text-stone-600 hover:text-orange-600 font-semibold text-xs py-1 transition-colors"
+          className="flex items-center gap-1.5 text-stone-600 dark:text-stone-400 hover:text-orange-600 dark:hover:text-[#f58c01] font-semibold text-xs py-1 transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>সকল বক্তাদের তালিকায় ফিরে যান</span>
         </button>
 
         {/* Speaker Profile Header Card */}
-        <div className="bg-white rounded-3xl p-5 border border-stone-200/90 shadow-sm flex flex-col items-center text-center">
-          <div className="relative w-24 h-24 rounded-full overflow-hidden border-3 border-[#f58c01] shadow-md mb-3 bg-stone-100">
+        <div className="bg-white dark:bg-stone-900 rounded-3xl p-5 border border-stone-200/90 dark:border-stone-800 shadow-sm flex flex-col items-center text-center">
+          <div className="relative w-24 h-24 rounded-full overflow-hidden border-3 border-[#f58c01] shadow-md mb-3 bg-stone-100 dark:bg-stone-800">
             <img 
               src={selectedSpeaker.image} 
               alt={selectedSpeaker.name} 
@@ -123,30 +123,30 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
             />
           </div>
 
-          <h2 className="text-lg font-bold text-stone-900 leading-tight">
+          <h2 className="text-lg font-bold text-stone-900 dark:text-stone-100 leading-tight">
             {selectedSpeaker.name}
           </h2>
           <p className="text-xs font-semibold text-[#f58c01] mt-1">
             {selectedSpeaker.title}
           </p>
 
-          <p className="text-xs text-stone-600 mt-2.5 max-w-sm leading-relaxed">
+          <p className="text-xs text-stone-600 dark:text-stone-300 mt-2.5 max-w-sm leading-relaxed">
             {selectedSpeaker.bio}
           </p>
 
-          <div className="flex items-center gap-4 mt-4 pt-3 border-t border-stone-100 w-full justify-center">
+          <div className="flex items-center gap-4 mt-4 pt-3 border-t border-stone-100 dark:border-stone-800 w-full justify-center">
             <div className="text-center">
-              <span className="block text-sm font-bold text-stone-800">
+              <span className="block text-sm font-bold text-stone-800 dark:text-stone-200">
                 {toBengaliNumber(selectedSpeaker.totalAudios)}
               </span>
-              <span className="text-[11px] text-stone-400">অডিও লেকচার</span>
+              <span className="text-[11px] text-stone-400 dark:text-stone-500">অডিও লেকচার</span>
             </div>
-            <div className="h-6 w-px bg-stone-200" />
+            <div className="h-6 w-px bg-stone-200 dark:bg-stone-800" />
             <div className="text-center">
               <span className="block text-sm font-bold text-[#f58c01]">
                 {selectedSpeaker.category}
               </span>
-              <span className="text-[11px] text-stone-400">প্রধান ক্ষেত্র</span>
+              <span className="text-[11px] text-stone-400 dark:text-stone-500">প্রধান ক্ষেত্র</span>
             </div>
           </div>
 
@@ -162,7 +162,7 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
         {/* Speaker Audios List */}
         <div>
           <div className="flex items-center justify-between mb-3 px-1">
-            <h3 className="text-sm font-bold text-stone-900">
+            <h3 className="text-sm font-bold text-stone-900 dark:text-stone-100">
               বক্তব্যের অডিওসমূহ ({toBengaliNumber(speakerAudios.length)})
             </h3>
           </div>
@@ -187,27 +187,27 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <Mic2 className="w-5 h-5 text-[#f58c01]" />
-            <h2 className="text-base font-bold text-stone-900">বক্তাগণ ও দাঈগণ</h2>
+            <h2 className="text-base font-bold text-stone-900 dark:text-stone-100">বক্তাগণ ও দাঈগণ</h2>
           </div>
-          <span className="text-xs font-semibold text-stone-500">
+          <span className="text-xs font-semibold text-stone-500 dark:text-stone-400">
             {toBengaliNumber(speakers.length)} জন স্কলার
           </span>
         </div>
 
         {/* Search Input */}
         <div className="relative">
-          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 dark:text-stone-500" />
           <input
             type="text"
             placeholder="বক্তার নাম দিয়ে খুঁজুন..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white border border-stone-200 rounded-xl pl-9 pr-9 py-2 text-xs text-stone-800 placeholder-stone-400 focus:outline-none focus:border-[#f58c01] focus:ring-1 focus:ring-[#f58c01] shadow-xs"
+            className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl pl-9 pr-9 py-2 text-xs text-stone-800 dark:text-stone-200 placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#f58c01] focus:ring-1 focus:ring-[#f58c01] shadow-xs"
           />
           {searchTerm && (
             <button
               onClick={() => setSearchTerm('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-1 cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 p-1 cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -224,7 +224,7 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
             className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
               selectedCategoryFilter === cat
                 ? 'bg-[#f58c01] text-white shadow-xs'
-                : 'bg-white text-stone-600 hover:bg-stone-50 border border-stone-200'
+                : 'bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 border border-stone-200 dark:border-stone-800'
             }`}
           >
             {cat}
@@ -233,14 +233,14 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
       </div>
 
       {/* Speakers Results Status */}
-      <div className="flex items-center justify-between text-xs text-stone-500 px-1">
+      <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 px-1">
         <span>উপলব্ধ বক্তাগণ</span>
         <span>{toBengaliNumber(filteredSpeakers.length)} জন পাওয়া গেছে</span>
       </div>
 
       {/* Speakers Grid */}
       {filteredSpeakers.length === 0 ? (
-        <div className="bg-white rounded-2xl p-8 text-center text-stone-500 text-xs border border-stone-200">
+        <div className="bg-white dark:bg-stone-900 rounded-2xl p-8 text-center text-stone-500 dark:text-stone-400 text-xs border border-stone-200 dark:border-stone-800">
           &quot;{searchTerm}&quot; দিয়ে কোনো বক্তা পাওয়া যায়নি। দয়া করে ভিন্ন নাম দিয়ে খুঁজুন।
         </div>
       ) : (
@@ -249,10 +249,10 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
             <div
               key={speaker.id}
               onClick={() => onSelectSpeaker(speaker)}
-              className="group bg-white rounded-2xl p-3 border border-stone-200/90 hover:border-[#f58c01] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between active:scale-[0.99]"
+              className="group bg-white dark:bg-stone-900 rounded-2xl p-3 border border-stone-200/90 dark:border-stone-800 hover:border-[#f58c01] dark:hover:border-[#f58c01] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between active:scale-[0.99]"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <div className="relative w-13 h-13 rounded-full overflow-hidden shrink-0 border-2 border-[#f58c01]/50 group-hover:border-[#f58c01] shadow-xs bg-stone-100">
+                <div className="relative w-13 h-13 rounded-full overflow-hidden shrink-0 border-2 border-[#f58c01]/50 group-hover:border-[#f58c01] shadow-xs bg-stone-100 dark:bg-stone-800">
                   <img 
                     src={speaker.image} 
                     alt={speaker.name} 
@@ -267,14 +267,14 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-xs font-bold text-stone-900 group-hover:text-[#f58c01] transition-colors truncate">
+                  <h3 className="text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-[#f58c01] transition-colors truncate">
                     {speaker.name}
                   </h3>
-                  <p className="text-[11px] text-stone-500 truncate mt-0.5">
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate mt-0.5">
                     {speaker.title}
                   </p>
-                  <div className="flex items-center gap-2 text-[10px] text-stone-400 font-medium mt-1">
-                    <span className="bg-orange-50 text-[#f58c01] border border-orange-100 px-2 py-0.5 rounded-md font-semibold">
+                  <div className="flex items-center gap-2 text-[10px] text-stone-400 dark:text-stone-500 font-medium mt-1">
+                    <span className="bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] border border-orange-100 dark:border-orange-900/50 px-2 py-0.5 rounded-md font-semibold">
                       {toBengaliNumber(speaker.totalAudios)} টি অডিও
                     </span>
                     <span>•</span>
@@ -283,7 +283,7 @@ export const SpeakersScreen: React.FC<SpeakersScreenProps> = ({
                 </div>
               </div>
 
-              <div className="p-2 rounded-xl text-stone-300 group-hover:text-[#f58c01] group-hover:bg-orange-50 transition-all shrink-0 ml-2">
+              <div className="p-2 rounded-xl text-stone-300 dark:text-stone-600 group-hover:text-[#f58c01] group-hover:bg-orange-50 dark:group-hover:bg-stone-800 transition-all shrink-0 ml-2">
                 <Play className="w-4 h-4 fill-current ml-0.5" />
               </div>
             </div>

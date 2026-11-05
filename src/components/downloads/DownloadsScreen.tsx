@@ -51,13 +51,13 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Download className="w-5 h-5 text-[#f58c01]" />
-          <h2 className="text-base font-bold text-stone-900">ডাউনলোডকৃত অডিও</h2>
+          <h2 className="text-base font-bold text-stone-900 dark:text-stone-100">ডাউনলোডকৃত অডিও</h2>
         </div>
 
         {downloads.length > 0 && (
           <button
             onClick={() => setConfirmClear(true)}
-            className="text-xs font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1 transition-colors cursor-pointer"
+            className="text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 flex items-center gap-1 transition-colors cursor-pointer"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>সব মুছুন</span>
@@ -66,28 +66,28 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
       </div>
 
       {/* Storage Information Card */}
-      <div className="bg-white text-stone-900 border border-stone-200/90 rounded-2xl p-4 shadow-xs">
+      <div className="bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 border border-stone-200/90 dark:border-stone-800 rounded-2xl p-4 shadow-xs">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-orange-50 text-[#f58c01] border border-orange-100 rounded-xl">
+            <div className="p-2 bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] border border-orange-100 dark:border-orange-900/50 rounded-xl">
               <HardDrive className="w-5 h-5 text-[#f58c01]" />
             </div>
             <div>
-              <span className="text-[11px] text-stone-500 font-medium block">
+              <span className="text-[11px] text-stone-500 dark:text-stone-400 font-medium block">
                 ইন্টারনাল মেমোরি স্টোরেজ
               </span>
-              <span className="text-base font-bold text-stone-900">
+              <span className="text-base font-bold text-stone-900 dark:text-stone-100">
                 {formatFileSizeBengali(totalMb)} ব্যবহৃত
               </span>
             </div>
           </div>
 
           <div className="text-right">
-            <span className="inline-flex items-center gap-1 bg-orange-50 text-[#f58c01] border border-orange-200/80 px-2.5 py-1 rounded-full text-[11px] font-bold">
+            <span className="inline-flex items-center gap-1 bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] border border-orange-200/80 dark:border-orange-900/50 px-2.5 py-1 rounded-full text-[11px] font-bold">
               <WifiOff className="w-3 h-3 text-[#f58c01]" />
               অফলাইন রেডি
             </span>
-            <span className="block text-[10px] text-stone-400 font-medium mt-1">
+            <span className="block text-[10px] text-stone-400 dark:text-stone-500 font-medium mt-1">
               {toBengaliNumber(downloads.length)} টি অডিও ফাইল
             </span>
           </div>
@@ -96,18 +96,18 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
 
       {/* Confirm Clear Modal Dialog */}
       {confirmClear && (
-        <div className="bg-rose-50 border border-rose-200 rounded-2xl p-3.5 text-stone-800 text-xs space-y-2 animate-in fade-in">
-          <div className="flex items-center gap-2 text-rose-700 font-bold">
+        <div className="bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 rounded-2xl p-3.5 text-stone-800 dark:text-stone-200 text-xs space-y-2 animate-in fade-in">
+          <div className="flex items-center gap-2 text-rose-700 dark:text-rose-300 font-bold">
             <AlertCircle className="w-4 h-4" />
             <span>আপনি কি সকল ডাউনলোড মুছে ফেলতে চান?</span>
           </div>
-          <p className="text-stone-600 text-[11px]">
+          <p className="text-stone-600 dark:text-stone-300 text-[11px]">
             এর ফলে সংরক্ষিত অফলাইন ফাইলগুলো আপনার ব্রাউজার মেমোরি থেকে মুছে যাবে।
           </p>
           <div className="flex justify-end gap-2 pt-1">
             <button
               onClick={() => setConfirmClear(false)}
-              className="px-3 py-1.5 bg-white border border-stone-200 rounded-lg font-semibold text-stone-600"
+              className="px-3 py-1.5 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg font-semibold text-stone-600 dark:text-stone-300 cursor-pointer"
             >
               বাতিল
             </button>
@@ -116,7 +116,7 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
                 clearAllDownloads();
                 setConfirmClear(false);
               }}
-              className="px-3 py-1.5 bg-rose-600 text-white rounded-lg font-bold"
+              className="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg font-bold cursor-pointer"
             >
               হ্যাঁ, মুছুন
             </button>
@@ -126,15 +126,15 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
 
       {/* Downloads List */}
       {downloads.length === 0 ? (
-        <div className="bg-white rounded-3xl p-8 text-center border border-stone-200/90 shadow-xs flex flex-col items-center">
-          <div className="w-16 h-16 rounded-full bg-orange-50 text-[#f58c01] flex items-center justify-center mb-3">
+        <div className="bg-white dark:bg-stone-900 rounded-3xl p-8 text-center border border-stone-200/90 dark:border-stone-800 shadow-xs flex flex-col items-center">
+          <div className="w-16 h-16 rounded-full bg-orange-50 dark:bg-orange-950/40 text-[#f58c01] flex items-center justify-center mb-3">
             <Download className="w-8 h-8 stroke-[1.5]" />
           </div>
 
-          <h3 className="text-sm font-bold text-stone-800">
+          <h3 className="text-sm font-bold text-stone-800 dark:text-stone-200">
             কোনো অডিও ডাউনলোড করা নেই
           </h3>
-          <p className="text-xs text-stone-500 max-w-xs mt-1 leading-relaxed">
+          <p className="text-xs text-stone-500 dark:text-stone-400 max-w-xs mt-1 leading-relaxed">
             ইন্টারনেট ছাড়াই শুনতে যেকোনো অডিওর পাশে থাকা ডাউনলোড আইকনে ট্যাপ করুন।
           </p>
 
@@ -155,7 +155,7 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
             return (
               <div
                 key={item.id}
-                className="group bg-white rounded-2xl p-3.5 border border-stone-200/90 hover:border-[#f58c01] shadow-xs transition-all flex items-center justify-between"
+                className="group bg-white dark:bg-stone-900 rounded-2xl p-3.5 border border-stone-200/90 dark:border-stone-800 hover:border-[#f58c01] dark:hover:border-[#f58c01] shadow-xs transition-all flex items-center justify-between"
               >
                 <div 
                   onClick={() => {
@@ -164,7 +164,7 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
                   }}
                   className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer"
                 >
-                  <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
                     <img 
                       src={item.speakerImage} 
                       alt={item.speakerName} 
@@ -179,15 +179,15 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
 
                   <div className="min-w-0 flex-1">
                     <h4 className={`text-xs font-bold truncate leading-tight ${
-                      isCurrent ? 'text-[#f58c01]' : 'text-stone-900 group-hover:text-[#f58c01]'
+                      isCurrent ? 'text-[#f58c01]' : 'text-stone-900 dark:text-stone-100 group-hover:text-[#f58c01]'
                     }`}>
                       {item.title}
                     </h4>
-                    <p className="text-[11px] text-stone-500 truncate mt-0.5">
+                    <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate mt-0.5">
                       {item.speakerName}
                     </p>
-                    <div className="flex items-center gap-2 text-[10px] text-stone-400 mt-0.5">
-                      <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+                    <div className="flex items-center gap-2 text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
+                      <span className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-0.5">
                         <WifiOff className="w-2.5 h-2.5" />
                         অফলাইন
                       </span>
@@ -205,7 +205,7 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
                   <button
                     onClick={() => handleDeviceDownload(item.audioUrl, item.title)}
                     aria-label="মোবাইল স্টোরেজে এক্সপোর্ট করুন"
-                    className="p-2 text-stone-400 hover:text-[#f58c01] hover:bg-orange-50 rounded-xl transition-all cursor-pointer"
+                    className="p-2 text-stone-400 dark:text-stone-500 hover:text-[#f58c01] dark:hover:text-[#f58c01] hover:bg-orange-50 dark:hover:bg-stone-800 rounded-xl transition-all cursor-pointer"
                     title="মোবাইলে ফাইল সেভ করুন"
                   >
                     <FileDown className="w-4 h-4" />
@@ -221,7 +221,7 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
                     className={`p-2 rounded-xl transition-all cursor-pointer ${
                       isPlayingNow 
                         ? 'bg-[#f58c01] text-white shadow-xs' 
-                        : 'bg-orange-50 hover:bg-[#f58c01] hover:text-white text-[#f58c01]'
+                        : 'bg-orange-50 dark:bg-stone-800 hover:bg-[#f58c01] hover:text-white text-[#f58c01]'
                     }`}
                   >
                     {isPlayingNow ? (
@@ -235,7 +235,7 @@ export const DownloadsScreen: React.FC<DownloadsScreenProps> = ({ onNavigateTab 
                   <button
                     onClick={() => deleteDownload(item.id)}
                     aria-label="মুছে ফেলুন"
-                    className="p-2 text-stone-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all cursor-pointer"
+                    className="p-2 text-stone-400 dark:text-stone-500 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-stone-800 rounded-xl transition-all cursor-pointer"
                     title="ডাউনলোড থেকে মুছুন"
                   >
                     <Trash2 className="w-4 h-4" />

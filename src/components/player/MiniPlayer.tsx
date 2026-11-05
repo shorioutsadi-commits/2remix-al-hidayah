@@ -23,10 +23,10 @@ export const MiniPlayer: React.FC = () => {
     <div className="fixed mini-player-pos left-0 right-0 z-35 px-2 pointer-events-auto">
       <div 
         onClick={() => setIsFullPlayerOpen(true)}
-        className="max-w-md mx-auto relative bg-white/95 text-stone-900 backdrop-blur-md rounded-2xl shadow-xl border border-stone-200/90 overflow-hidden cursor-pointer select-none group transition-all transform active:scale-[0.99]"
+        className="max-w-md mx-auto relative bg-white/95 dark:bg-stone-900/95 text-stone-900 dark:text-stone-100 backdrop-blur-md rounded-2xl shadow-xl border border-stone-200/90 dark:border-stone-800 overflow-hidden cursor-pointer select-none group transition-all transform active:scale-[0.99]"
       >
         {/* Top Slim Progress Bar */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-stone-100">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-stone-100 dark:bg-stone-800">
           <div 
             className="h-full bg-[#f58c01] transition-all duration-200"
             style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
@@ -36,7 +36,7 @@ export const MiniPlayer: React.FC = () => {
         <div className="flex items-center justify-between p-2 pt-2.5">
           {/* Left: Thumbnail & Details */}
           <div className="flex items-center gap-2.5 min-w-0 flex-1">
-            <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200">
+            <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
               <img 
                 src={currentAudio.speakerImage} 
                 alt={currentAudio.speakerName}
@@ -60,10 +60,10 @@ export const MiniPlayer: React.FC = () => {
             </div>
 
             <div className="min-w-0 flex-1">
-              <h4 className="text-xs font-semibold text-stone-900 truncate group-hover:text-[#f58c01] transition-colors">
+              <h4 className="text-xs font-semibold text-stone-900 dark:text-stone-100 truncate group-hover:text-[#f58c01] transition-colors">
                 {currentAudio.title}
               </h4>
-              <div className="flex items-center gap-1.5 text-[11px] text-stone-500">
+              <div className="flex items-center gap-1.5 text-[11px] text-stone-500 dark:text-stone-400">
                 <span className="truncate">{currentAudio.speakerName}</span>
                 <span>•</span>
                 <span className="text-[#f58c01] font-mono text-[10px] font-semibold">
@@ -82,7 +82,7 @@ export const MiniPlayer: React.FC = () => {
             <button
               onClick={() => skipSeconds(-10)}
               aria-label="১০ সেকেন্ড পেছনে"
-              className="p-1.5 rounded-lg text-stone-600 hover:text-[#f58c01] hover:bg-stone-100 active:scale-90 transition-all cursor-pointer"
+              className="p-1.5 rounded-lg text-stone-600 dark:text-stone-300 hover:text-[#f58c01] hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-90 transition-all cursor-pointer"
               title="১০ সেকেন্ড পেছনে"
             >
               <RotateCcw className="w-4 h-4" />
@@ -107,7 +107,7 @@ export const MiniPlayer: React.FC = () => {
             <button
               onClick={() => skipSeconds(10)}
               aria-label="১০ সেকেন্ড সামনে"
-              className="p-1.5 rounded-lg text-stone-600 hover:text-[#f58c01] hover:bg-stone-100 active:scale-90 transition-all cursor-pointer"
+              className="p-1.5 rounded-lg text-stone-600 dark:text-stone-300 hover:text-[#f58c01] hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-90 transition-all cursor-pointer"
               title="১০ সেকেন্ড সামনে"
             >
               <RotateCw className="w-4 h-4" />
@@ -117,7 +117,7 @@ export const MiniPlayer: React.FC = () => {
             <button
               onClick={() => setIsFullPlayerOpen(true)}
               aria-label="পূর্ণাঙ্গ প্লেয়ার খুলুন"
-              className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-100 active:scale-90 transition-all ml-0.5 cursor-pointer"
+              className="p-1.5 rounded-lg text-stone-400 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-90 transition-all ml-0.5 cursor-pointer"
               title="বড় প্লেয়ার"
             >
               <ChevronUp className="w-5 h-5" />

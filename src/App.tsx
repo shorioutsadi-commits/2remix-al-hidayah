@@ -59,10 +59,31 @@ const MainAppContent: React.FC = () => {
   const lastBackActionTimeRef = useRef<number>(0);
   const lastExitPromptTimeRef = useRef<number>(0);
 
-  // Status bar styling & safe area measurement on Android Native
+  // Status bar styling, safe area measurement, and dynamic Theme handling (Light / Dark / System)
   useEffect(() => {
+    const applyTheme = () => {
+      const isDarkMode = 
+        settings.theme === 'dark' || 
+        (settings.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0a09');
+        if (Capacitor.isNativePlatform()) {
+          StatusBar.setStyle({ style: Style.Dark }).catch(() => {});
+        }
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#ffffff');
+        if (Capacitor.isNativePlatform()) {
+          StatusBar.setStyle({ style: Style.Light }).catch(() => {});
+        }
+      }
+    };
+
+    applyTheme();
+
     if (Capacitor.isNativePlatform()) {
-      StatusBar.setStyle({ style: Style.Light }).catch(() => {});
       StatusBar.getInfo()
         .then((info) => {
           if (info && info.height) {
@@ -71,7 +92,14 @@ const MainAppContent: React.FC = () => {
         })
         .catch(() => {});
     }
-  }, []);
+
+    if (settings.theme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const listener = () => applyTheme();
+      mediaQuery.addEventListener('change', listener);
+      return () => mediaQuery.removeEventListener('change', listener);
+    }
+  }, [settings.theme]);
 
   // Back button state reference to avoid stale closures
   const stateRef = useRef({
@@ -257,7 +285,7 @@ const MainAppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-stone-900 flex flex-col justify-between selection:bg-[#f58c01] selection:text-white">
+    <div className="min-h-screen bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 flex flex-col justify-between selection:bg-[#f58c01] selection:text-white transition-colors duration-200">
       
       {/* Top Header */}
       <Header

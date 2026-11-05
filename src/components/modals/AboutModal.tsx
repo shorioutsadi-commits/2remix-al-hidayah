@@ -29,22 +29,22 @@ export const AboutModal: React.FC<AboutModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-stone-900/60 backdrop-blur-xs transition-opacity" 
+        className="fixed inset-0 bg-stone-900/60 dark:bg-black/80 backdrop-blur-xs transition-opacity" 
         onClick={onClose} 
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl p-5 z-10 max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-sm bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 rounded-3xl shadow-2xl p-5 z-10 max-h-[90vh] overflow-y-auto border border-stone-100 dark:border-stone-800 animate-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-stone-100">
-          <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-xl">
+        <div className="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800">
+          <div className="flex items-center gap-1 bg-stone-100 dark:bg-stone-800 p-1 rounded-xl">
             <button
               onClick={() => setActiveTab('about')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'about'
-                  ? 'bg-white text-[#f58c01] shadow-xs'
-                  : 'text-stone-600 hover:text-stone-900'
+                  ? 'bg-white dark:bg-stone-700 text-[#f58c01] shadow-xs'
+                  : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
               }`}
             >
               আমাদের সম্পর্কে
@@ -53,8 +53,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               onClick={() => setActiveTab('apps')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'apps'
-                  ? 'bg-white text-[#f58c01] shadow-xs'
-                  : 'text-stone-600 hover:text-stone-900'
+                  ? 'bg-white dark:bg-stone-700 text-[#f58c01] shadow-xs'
+                  : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
               }`}
             >
               অন্যান্য অ্যাপ
@@ -63,7 +63,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
+            className="p-1.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -78,36 +78,36 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-stone-900">
+                <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100">
                   আল হিদায়াহ অডিও
                 </h3>
                 <p className="text-xs text-[#f58c01] font-semibold mt-0.5">
                   একটি সমৃদ্ধ ইসলামিক অডিও লাইব্রেরি
                 </p>
-                <span className="inline-block mt-1 text-[11px] text-stone-400 bg-stone-100 px-2.5 py-0.5 rounded-full font-mono">
+                <span className="inline-block mt-1 text-[11px] text-stone-400 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-2.5 py-0.5 rounded-full font-mono">
                   সংস্করণ {toBengaliNumber('1.4.0')}
                 </span>
               </div>
 
-              <div className="text-left bg-stone-50 border border-stone-200/80 rounded-2xl p-4 text-xs text-stone-700 space-y-2.5 leading-relaxed">
+              <div className="text-left bg-stone-50 dark:bg-stone-850 border border-stone-200/80 dark:border-stone-700/80 rounded-2xl p-4 text-xs text-stone-700 dark:text-stone-300 space-y-2.5 leading-relaxed">
                 <p>
                   <strong>‘আল হিদায়াহ অডিও’</strong> অ্যাপটি মুসলিম সেন্ট্রাল প্ল্যাটফর্মের অনুপ্রেরণায় বাংলাভাষী মুসলিমদের জন্য তৈরি একটি পূর্ণাঙ্গ অডিও লাইব্রেরি।
                 </p>
                 <p>
                   এখানে সহীহ আকিদা, সীরাতুন্নবী (সা:), পরিবার ও সমাজ সংস্কার, তাওবা এবং প্রখ্যাত ক্বারীগণের মিষ্টি কণ্ঠের কুরআন তিলাওয়াত সহজ ও সুন্দরভাবে শোনার সুবিধা দেওয়া হয়েছে।
                 </p>
-                <p className="text-stone-500 text-[11px]">
+                <p className="text-stone-500 dark:text-stone-400 text-[11px]">
                   ইন্টারনেট ছাড়াও যেকোনো সময়ে শোনার জন্য এতে রয়েছে স্মার্ট অফলাইন ডাউনলোড সুবিধা।
                 </p>
               </div>
 
-              <div className="bg-orange-50 border border-orange-200/80 rounded-2xl p-3.5 text-xs text-orange-950 flex items-center gap-3 text-left">
+              <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200/80 dark:border-orange-900/40 rounded-2xl p-3.5 text-xs text-orange-950 dark:text-orange-200 flex items-center gap-3 text-left">
                 <div className="p-2 bg-[#f58c01] text-white rounded-xl shrink-0">
                   <Heart className="w-5 h-5 fill-current" />
                 </div>
                 <div>
-                  <span className="font-bold block text-stone-900">সদকায়ে জারিয়া</span>
-                  <span className="text-[11px] text-stone-600">
+                  <span className="font-bold block text-stone-900 dark:text-stone-100">সদকায়ে জারিয়া</span>
+                  <span className="text-[11px] text-stone-600 dark:text-stone-300">
                     দাওয়াহ প্রচার ও মানবকল্যাণের উদ্দেশ্যে নিবেদিত। আপনাদের দোয়ায় আমাদের স্মরণ রাখবেন।
                   </span>
                 </div>
@@ -116,10 +116,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({
           ) : (
             <div className="space-y-3">
               <div className="text-center mb-2">
-                <h3 className="text-sm font-bold text-stone-900">
+                <h3 className="text-sm font-bold text-stone-900 dark:text-stone-100">
                   আমাদের অন্যান্য ইসলামিক অ্যাপসমূহ
                 </h3>
-                <p className="text-[11px] text-stone-500">
+                <p className="text-[11px] text-stone-500 dark:text-stone-400">
                   আপনার দৈনন্দিন ইসলামিক জীবনের জন্য প্রয়োজনীয় মোবাইল অ্যাপ
                 </p>
               </div>
@@ -127,7 +127,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               {OTHER_APPS_DATA.map((app, index) => (
                 <div
                   key={index}
-                  className="bg-stone-50 hover:bg-orange-50/50 border border-stone-200/80 hover:border-orange-300 rounded-2xl p-3 flex items-center justify-between transition-all"
+                  className="bg-stone-50 dark:bg-stone-800/80 hover:bg-orange-50/50 dark:hover:bg-stone-750 border border-stone-200/80 dark:border-stone-700/80 hover:border-orange-300 dark:hover:border-stone-600 rounded-2xl p-3 flex items-center justify-between transition-all"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="w-10 h-10 rounded-xl bg-[#f58c01] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-xs">
@@ -138,14 +138,14 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-xs font-bold text-stone-900 truncate">
+                      <h4 className="text-xs font-bold text-stone-900 dark:text-stone-100 truncate">
                         {app.name}
                       </h4>
-                      <p className="text-[10px] text-stone-500 truncate mt-0.5">
+                      <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate mt-0.5">
                         {app.desc}
                       </p>
-                      <div className="flex items-center gap-2 mt-1 text-[10px] text-stone-400">
-                        <span className="text-amber-600 font-semibold flex items-center gap-0.5">
+                      <div className="flex items-center gap-2 mt-1 text-[10px] text-stone-400 dark:text-stone-500">
+                        <span className="text-amber-600 dark:text-amber-400 font-semibold flex items-center gap-0.5">
                           {app.rating}
                         </span>
                         <span>•</span>
@@ -156,7 +156,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
 
                   <button
                     onClick={() => showToast(`'${app.name}' অ্যাপটি গুগল প্লে স্টোরে শীঘ্রই আসছে!`, 'info')}
-                    className="p-2 text-stone-400 hover:text-[#f58c01] hover:bg-white rounded-xl transition-colors shrink-0 cursor-pointer"
+                    className="p-2 text-stone-400 hover:text-[#f58c01] hover:bg-white dark:hover:bg-stone-700 rounded-xl transition-colors shrink-0 cursor-pointer"
                     title="ইনস্টল করুন"
                   >
                     <ExternalLink className="w-4 h-4" />
@@ -168,7 +168,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="pt-2 border-t border-stone-100 text-center">
+        <div className="pt-2 border-t border-stone-100 dark:border-stone-800 text-center">
           <button
             onClick={onClose}
             className="w-full py-2.5 bg-[#f58c01] hover:bg-[#e07500] text-white rounded-xl text-xs font-bold shadow-md shadow-orange-500/25 active:scale-95 transition-all cursor-pointer"
